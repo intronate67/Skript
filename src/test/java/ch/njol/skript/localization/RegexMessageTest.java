@@ -23,6 +23,8 @@ package ch.njol.skript.localization;
 
 import org.junit.Test;
 
+import com.huntersharpe.skript.localization.RegexMessage;
+
 /**
  * @author Peter Güttinger
  */

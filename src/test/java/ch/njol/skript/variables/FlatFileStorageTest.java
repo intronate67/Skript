@@ -27,6 +27,8 @@ import java.util.Arrays;
 
 import org.junit.Test;
 
+import com.huntersharpe.skript.variables.FlatFileStorage;
+
 /**
  * @author Peter Güttinger
  */

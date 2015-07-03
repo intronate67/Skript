@@ -1,8 +1,8 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>ch.njol</groupId>
+	<groupId>com.huntersharpe</groupId>
 	<artifactId>skript</artifactId>
-	<version>2.2-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
 	<name>Skript</name>
 	<description>A plugin for the Minecraft server API Bukkit that allows to create scripts in natural language.</description>
 	<url>http://njol.ch/projects/skript/</url>
@@ -15,19 +15,25 @@
 	</licenses>
 	<inceptionYear>2011</inceptionYear>
 	<scm>
-		<developerConnection>scm:git:git://github.com/Njol/Skript.git</developerConnection>
-		<connection>scm:git:git://github.com/Njol/Skript.git</connection>
-		<url>http://github.com/Njol/Skript</url>
+		<developerConnection>scm:git:git://github.com/intronate67/Skript.git</developerConnection>
+		<connection>scm:git:git://github.com/intronate67/Skript.git</connection>
+		<url>http://github.com/intronate67/Skript</url>
 	</scm>
 	<issueManagement>
 		<system>GitHub</system>
-		<url>http://github.com/Njol/Skript/issues</url>
+		<url>http://github.com/intronate67/Skript/issues</url>
 	</issueManagement>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 	<dependencies>
 		<dependency>
+        	<groupId>org.spongepowered</groupId>
+        	<artifactId>spongeapi</artifactId>
+        	<version>2.1-SNAPSHOT</version>
+        	<scope>provided</scope>
+    	</dependency>
+    	<dependency>
 			<groupId>ch.njol</groupId>
 			<artifactId>utils</artifactId>
 			<version>1.0-SNAPSHOT</version>
@@ -39,22 +45,7 @@
 			<version>0.1</version>
 			<scope>compile</scope>
 		</dependency>
-
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>bukkit</artifactId>
-			<version>1.8-R0.1-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<!-- For the source -->
-		<dependency>
-			<groupId>org.bukkit</groupId>
-			<artifactId>craftbukkit</artifactId>
-			<version>1.7.2-R0.4-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
 		<!-- <dependency> <groupId>org.bukkit</groupId> <artifactId>minecraft-server</artifactId> <version>1.5.2</version> <scope>provided</scope> </dependency> -->
-
 		<dependency>
 			<groupId>patpeter</groupId>
 			<artifactId>sqlibrary</artifactId>
@@ -64,11 +55,11 @@
 		<!-- Now directly included in Skript's source -->
 		<!-- <dependency> <groupId>org.mcstats</groupId> <artifactId>metrics</artifactId> <version>1.0-SNAPSHOT</version> <scope>compile</scope> </dependency> -->
 		<dependency>
-			<groupId>net.milkbowl</groupId>
-			<artifactId>vault</artifactId>
-			<version>1.2.27</version>
-			<scope>provided</scope>
-		</dependency>
+            <groupId>net.milkbowl.vault</groupId>
+            <artifactId>VaultAPI</artifactId>
+            <version>1.5</version>
+            <scope>provided</scope>
+        </dependency>
 		<dependency>
 			<groupId>com.massivecraft</groupId>
 			<artifactId>factions</artifactId>
@@ -127,21 +118,28 @@
 	</dependencies>
 	<repositories>
 		<repository>
+        	<id>sponge-maven-repo</id>
+        	<name>Sponge maven repo</name>
+        	<url>http://repo.spongepowered.org/maven</url>
+        	<releases>
+            	<enabled>true</enabled>
+        	</releases>
+        	<snapshots>
+            	<enabled>true</enabled>
+        	</snapshots>
+    </repository>
+		<repository>
 			<id>njol-repo</id>
 			<url>http://maven.njol.ch/repo/</url>
-		</repository>
-		<repository>
-			<id>bukkit-repo</id>
-			<url>http://repo.bukkit.org/content/repositories/public/</url>
 		</repository>
 		<repository>
 			<id>sk89q-repo</id>
 			<url>http://maven.sk89q.com/repo/</url>
 		</repository>
 		<repository>
-			<id>vault-repo</id>
-			<url>http://ci.herocraftonline.com/plugin/repository/everything/</url>
-		</repository>
+            <id>vault-repo</id>
+            <url>http://nexus.theyeticave.net/content/repositories/pub_releases</url>
+        </repository>
 		<repository>
 			<!-- added by WorldGuard, but doesn't seem to exist anymore -->
 			<id>zml-repo</id>

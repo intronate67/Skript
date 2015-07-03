@@ -38,6 +38,8 @@ import java.util.TreeMap;
 
 import org.junit.Test;
 
+import com.huntersharpe.skript.util.Utils;
+
 /**
  * @author Peter Güttinger
  */

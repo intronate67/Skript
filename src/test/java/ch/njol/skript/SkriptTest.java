@@ -31,9 +31,11 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
-import ch.njol.skript.config.Config;
-import ch.njol.skript.config.SectionNode;
-import ch.njol.skript.lang.Trigger;
+import com.huntersharpe.skript.ScriptLoader;
+import com.huntersharpe.skript.Skript;
+import com.huntersharpe.skript.config.Config;
+import com.huntersharpe.skript.config.SectionNode;
+import com.huntersharpe.skript.lang.Trigger;
 
 /**
  * @author Peter Güttinger

@@ -31,7 +31,10 @@ import java.util.logging.LogRecord;
 import org.eclipse.jdt.annotation.Nullable;
 import org.junit.Test;
 
-import ch.njol.skript.log.BukkitLoggerFilter;
+import com.huntersharpe.skript.aliases.Aliases;
+import com.huntersharpe.skript.aliases.ItemData;
+import com.huntersharpe.skript.aliases.ItemType;
+import com.huntersharpe.skript.log.BukkitLoggerFilter;
 
 /**
  * @author Peter Güttinger
