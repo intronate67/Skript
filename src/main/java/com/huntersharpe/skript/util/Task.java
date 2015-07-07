@@ -5,9 +5,8 @@ import java.util.concurrent.CancellationException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.Future;
 
-import org.bukkit.Bukkit;
-import org.bukkit.plugin.Plugin;
 import org.eclipse.jdt.annotation.Nullable;
+import org.spongepowered.api.plugin.Plugin;
 
 import com.huntersharpe.skript.Skript;
 

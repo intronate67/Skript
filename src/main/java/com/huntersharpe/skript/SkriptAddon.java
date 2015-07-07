@@ -30,8 +30,8 @@ import java.util.jar.JarFile;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.bukkit.plugin.java.JavaPlugin;
 import org.eclipse.jdt.annotation.Nullable;
+import org.spongepowered.api.plugin.Plugin;
 
 import com.huntersharpe.skript.localization.Language;
 import com.huntersharpe.skript.util.Utils;
@@ -40,33 +40,33 @@ import com.huntersharpe.skript.util.Version;
 import ch.njol.util.coll.iterator.EnumerationIterable;
 
 /**
- * Utility class for Skript addons. Use {@link Skript#registerAddon(JavaPlugin)} to create a SkriptAddon instance for your plugin.
+ * Utility class for Skript addons. Use {@link Skript#registerAddon(Plugin)} to create a SkriptAddon instance for your plugin.
  * 
- * @author Peter Güttinger
+ * @author Peter Güttinger & Hunter Sharpe
  */
 public final class SkriptAddon {
 	
-	public final JavaPlugin plugin;
+	public final Plugin plugin;
 	public final Version version;
 	private final String name;
 	
 	/**
-	 * Package-private constructor. Use {@link Skript#registerAddon(JavaPlugin)} to get a SkriptAddon for your plugin.
+	 * Package-private constructor. Use {@link Skript#registerAddon(Plugin)} to get a SkriptAddon for your plugin.
 	 * 
 	 * @param p
 	 */
-	SkriptAddon(final JavaPlugin p) {
+	SkriptAddon(final Plugin p) {
 		plugin = p;
-		name = "" + p.getName();
+		name = "" + p.name();
 		Version v;
 		try {
-			v = new Version("" + p.getDescription().getVersion());
+			v = new Version("" + p.version());
 		} catch (final IllegalArgumentException e) {
-			final Matcher m = Pattern.compile("(\\d+)(?:\\.(\\d+)(?:\\.(\\d+))?)?").matcher(p.getDescription().getVersion());
+			final Matcher m = Pattern.compile("(\\d+)(?:\\.(\\d+)(?:\\.(\\d+))?)?").matcher(p.version());
 			if (!m.find())
-				throw new IllegalArgumentException("The version of the plugin " + p.getName() + " does not contain any numbers: " + p.getDescription().getVersion());
+				throw new IllegalArgumentException("The version of the plugin " + p.name() + " does not contain any numbers: " + p.version());
 			v = new Version(Utils.parseInt("" + m.group(1)), m.group(2) == null ? 0 : Utils.parseInt("" + m.group(2)), m.group(3) == null ? 0 : Utils.parseInt("" + m.group(3)));
-			Skript.warning("The plugin " + p.getName() + " uses a non-standard version syntax: '" + p.getDescription().getVersion() + "'. Skript will use " + v + " instead.");
+			Skript.warning("The plugin " + p.name() + " uses a non-standard version syntax: '" + p.version() + "'. Skript will use " + v + " instead.");
 		}
 		version = v;
 	}
@@ -164,7 +164,7 @@ public final class SkriptAddon {
 		if (file != null)
 			return file;
 		try {
-			final Method getFile = JavaPlugin.class.getDeclaredMethod("getFile");
+			final Method getFile = Plugin.class.getDeclaredMethod("getFile");
 			getFile.setAccessible(true);
 			file = (File) getFile.invoke(plugin);
 			return file;

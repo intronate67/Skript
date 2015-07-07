@@ -23,8 +23,8 @@ package com.huntersharpe.skript.lang;
 
 import java.util.Locale;
 
-import org.bukkit.event.Event;
 import org.eclipse.jdt.annotation.Nullable;
+import org.spongepowered.api.event.Event;
 
 import com.huntersharpe.skript.SkriptAPIException;
 

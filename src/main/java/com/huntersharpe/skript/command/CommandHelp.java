@@ -21,13 +21,12 @@
 
 package com.huntersharpe.skript.command;
 
-import static org.bukkit.ChatColor.*;
-
 import java.util.LinkedHashMap;
 import java.util.Map.Entry;
 
-import org.bukkit.command.CommandSender;
 import org.eclipse.jdt.annotation.Nullable;
+import org.spongepowered.api.text.format.TextColors;
+import org.spongepowered.api.util.command.CommandSource;
 
 import com.huntersharpe.skript.Skript;
 import com.huntersharpe.skript.localization.ArgsMessage;
@@ -72,14 +71,14 @@ public class CommandHelp {
 	public CommandHelp add(final String argument) {
 		if (langNode == null) {
 			if (argument.startsWith("<") && argument.endsWith(">")) {
-				final String carg = GRAY + "<" + argsColor + argument.substring(1, argument.length() - 1) + GRAY + ">";
+				final String carg = TextColors.GRAY + "<" + argsColor + argument.substring(1, argument.length() - 1) + TextColors.GRAY + ">";
 				arguments.put(carg, argument);
 			} else {
 				arguments.put(argument, null);
 			}
 		} else {
 			if (argument.startsWith("<") && argument.endsWith(">")) {
-				final String carg = GRAY + "<" + argsColor + argument.substring(1, argument.length() - 1) + GRAY + ">";
+				final String carg = TextColors.GRAY + "<" + argsColor + argument.substring(1, argument.length() - 1) + TextColors.GRAY + ">";
 				wildcardArg = new Message(langNode + "." + argument);
 				arguments.put(carg, wildcardArg);
 			} else {
@@ -113,11 +112,11 @@ public class CommandHelp {
 		}
 	}
 	
-	public boolean test(final CommandSender sender, final String[] args) {
+	public boolean test(final CommandSource sender, final String[] args) {
 		return test(sender, args, 0);
 	}
 	
-	private boolean test(final CommandSender sender, final String[] args, final int index) {
+	private boolean test(final CommandSource sender, final String[] args, final int index) {
 		if (index >= args.length) {
 			showHelp(sender);
 			return false;
@@ -132,14 +131,14 @@ public class CommandHelp {
 		return true;
 	}
 	
-	public void showHelp(final CommandSender sender) {
+	public void showHelp(final CommandSource sender) {
 		showHelp(sender, m_usage.toString());
 	}
 	
-	private void showHelp(final CommandSender sender, final String pre) {
+	private void showHelp(final CommandSource sender, final String pre) {
 		Skript.message(sender, pre + " " + command + " " + argsColor + "...");
 		for (final Entry<String, Object> e : arguments.entrySet()) {
-			Skript.message(sender, "  " + argsColor + e.getKey() + " " + GRAY + "-" + RESET + " " + e.getValue());
+			Skript.message(sender, "  " + argsColor + e.getKey() + " " + TextColors.GRAY + "-" + TextColors.RESET + " " + e.getValue());
 		}
 	}
 	

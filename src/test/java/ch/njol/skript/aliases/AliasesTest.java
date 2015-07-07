@@ -34,14 +34,14 @@ import org.junit.Test;
 import com.huntersharpe.skript.aliases.Aliases;
 import com.huntersharpe.skript.aliases.ItemData;
 import com.huntersharpe.skript.aliases.ItemType;
-import com.huntersharpe.skript.log.BukkitLoggerFilter;
+import com.huntersharpe.skript.log.SpongeLoggerFilter;
 
 /**
  * @author Peter Güttinger
  */
 public class AliasesTest {
 	static {
-		BukkitLoggerFilter.addFilter(new Filter() {
+		SpongeLoggerFilter.addFilter(new Filter() {
 			@Override
 			public boolean isLoggable(final @Nullable LogRecord record) {
 				if (record == null)

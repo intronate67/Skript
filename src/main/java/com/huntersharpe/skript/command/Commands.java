@@ -70,7 +70,7 @@ import com.huntersharpe.skript.lang.SkriptParser;
 import com.huntersharpe.skript.localization.ArgsMessage;
 import com.huntersharpe.skript.localization.Language;
 import com.huntersharpe.skript.localization.Message;
-import com.huntersharpe.skript.log.BukkitLoggerFilter;
+import com.huntersharpe.skript.log.SpongeLoggerFilter;
 import com.huntersharpe.skript.log.RetainingLogHandler;
 import com.huntersharpe.skript.log.SkriptLogger;
 import com.huntersharpe.skript.registrations.Classes;
@@ -187,7 +187,7 @@ public abstract class Commands {
 	
 	static boolean suppressUnknownCommandMessage = false;
 	static {
-		BukkitLoggerFilter.addFilter(new Filter() {
+		SpongeLoggerFilter.addFilter(new Filter() {
 			@Override
 			public boolean isLoggable(final @Nullable LogRecord record) {
 				if (record == null)

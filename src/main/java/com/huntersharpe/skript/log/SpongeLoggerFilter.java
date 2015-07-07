@@ -39,7 +39,7 @@ import ch.njol.util.LoggerFilter;
  * 
  * @author Peter Güttinger
  */
-public class BukkitLoggerFilter {
+public class SpongeLoggerFilter {
 	
 	private final static LoggerFilter filter = new LoggerFilter(SkriptLogger.LOGGER);
 	static {

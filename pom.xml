@@ -4,7 +4,7 @@
 	<artifactId>skript</artifactId>
 	<version>1.0-SNAPSHOT</version>
 	<name>Skript</name>
-	<description>A plugin for the Minecraft server API Bukkit that allows to create scripts in natural language.</description>
+	<description>A plugin for the Minecraft Sponge API that allows to create scripts in natural language.</description>
 	<url>http://njol.ch/projects/skript/</url>
 	<licenses>
 		<license>
@@ -45,7 +45,6 @@
 			<version>0.1</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.bukkit</groupId> <artifactId>minecraft-server</artifactId> <version>1.5.2</version> <scope>provided</scope> </dependency> -->
 		<dependency>
 			<groupId>patpeter</groupId>
 			<artifactId>sqlibrary</artifactId>
@@ -59,38 +58,13 @@
             <artifactId>VaultAPI</artifactId>
             <version>1.5</version>
             <scope>provided</scope>
-        </dependency>
-		<dependency>
-			<groupId>com.massivecraft</groupId>
-			<artifactId>factions</artifactId>
-			<version>2.6</version>
-			<scope>provided</scope>
+            <exclusions>
+            	<exclusion>
+            		<artifactId>bukkit</artifactId>
+            		<groupId>org.bukkit</groupId>
+            	</exclusion>
+            </exclusions>
 		</dependency>
-		<dependency>
-			<groupId>com.massivecraft</groupId>
-			<artifactId>mcore</artifactId>
-			<version>7.4</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>com.sk89q</groupId>
-			<artifactId>worldguard</artifactId>
-			<version>6.0.0-SNAPSHOT</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>net.sacredlabyrinth.phaed</groupId>
-			<artifactId>preciousstones</artifactId>
-			<version>9.7</version>
-			<scope>provided</scope>
-		</dependency>
-		<dependency>
-			<groupId>me.ryanhamshire</groupId>
-			<artifactId>griefprevention</artifactId>
-			<version>8.2</version>
-			<scope>provided</scope>
-		</dependency>
-
 		<dependency>
 			<groupId>org.eclipse</groupId>
 			<artifactId>jdt.annotation</artifactId>
@@ -131,10 +105,6 @@
 		<repository>
 			<id>njol-repo</id>
 			<url>http://maven.njol.ch/repo/</url>
-		</repository>
-		<repository>
-			<id>sk89q-repo</id>
-			<url>http://maven.sk89q.com/repo/</url>
 		</repository>
 		<repository>
             <id>vault-repo</id>

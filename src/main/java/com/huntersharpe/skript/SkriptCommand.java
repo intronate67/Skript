@@ -4,12 +4,13 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
-import org.bukkit.util.ChatPaginator;
-import org.bukkit.util.ChatPaginator.ChatPage;
 import org.eclipse.jdt.annotation.Nullable;
+import org.spongepowered.api.entity.player.Player;
+import org.spongepowered.api.util.command.CommandException;
+import org.spongepowered.api.util.command.CommandResult;
+import org.spongepowered.api.util.command.CommandSource;
+import org.spongepowered.api.util.command.args.CommandContext;
+import org.spongepowered.api.util.command.spec.CommandExecutor;
 
 import com.huntersharpe.skript.ScriptLoader.ScriptInfo;
 import com.huntersharpe.skript.Updater.UpdateState;
@@ -51,7 +52,7 @@ import edu.umd.cs.findbugs.annotations.SuppressFBWarnings;
  */
 
 /**
- * @author Peter Güttinger
+ * @author Peter Güttinger & Hunter Sharpe
  */
 public class SkriptCommand implements CommandExecutor {
 	private final static String NODE = "skript command";
@@ -83,7 +84,7 @@ public class SkriptCommand implements CommandExecutor {
 	
 	private final static ArgsMessage m_reloading = new ArgsMessage(NODE + ".reload.reloading");
 	
-	private final static void reloading(final CommandSender sender, String what, final Object... args) {
+	private final static void reloading(final CommandSource sender, String what, final Object... args) {
 		what = args.length == 0 ? Language.get(NODE + ".reload." + what) : Language.format(NODE + ".reload." + what, args);
 		Skript.info(sender, StringUtils.fixCapitalization(m_reloading.toString(what)));
 	}
@@ -93,7 +94,7 @@ public class SkriptCommand implements CommandExecutor {
 	
 	private final static ArgsMessage m_changes_title = new ArgsMessage(NODE + ".update.changes.title");
 	
-	private final static void reloaded(final CommandSender sender, final RedirectingLogHandler r, String what, final Object... args) {
+	private final static void reloaded(final CommandSource sender, final RedirectingLogHandler r, String what, final Object... args) {
 		what = args.length == 0 ? Language.get(NODE + ".reload." + what) : PluralizingArgsMessage.format(Language.format(NODE + ".reload." + what, args));
 		if (r.numErrors() == 0)
 			Skript.info(sender, StringUtils.fixCapitalization(PluralizingArgsMessage.format(m_reloaded.toString(what))));
@@ -101,21 +102,33 @@ public class SkriptCommand implements CommandExecutor {
 			Skript.error(sender, StringUtils.fixCapitalization(PluralizingArgsMessage.format(m_reload_error.toString(what, r.numErrors()))));
 	}
 	
-	private final static void info(final CommandSender sender, String what, final Object... args) {
+	private final static void info(final CommandSource sender, String what, final Object... args) {
 		what = args.length == 0 ? Language.get(NODE + "." + what) : PluralizingArgsMessage.format(Language.format(NODE + "." + what, args));
 		Skript.info(sender, StringUtils.fixCapitalization(what));
 	}
 	
-	private final static void message(final CommandSender sender, String what, final Object... args) {
+	private final static void message(final CommandSource sender, String what, final Object... args) {
 		what = args.length == 0 ? Language.get(NODE + "." + what) : PluralizingArgsMessage.format(Language.format(NODE + "." + what, args));
 		Skript.message(sender, StringUtils.fixCapitalization(what));
 	}
 	
-	private final static void error(final CommandSender sender, String what, final Object... args) {
+	private final static void error(final CommandSource sender, String what, final Object... args) {
 		what = args.length == 0 ? Language.get(NODE + "." + what) : PluralizingArgsMessage.format(Language.format(NODE + "." + what, args));
 		Skript.error(sender, StringUtils.fixCapitalization(what));
 	}
 	
+	@Override
+	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
+	public @Nullable CommandResult execute(@Nullable CommandSource src, @Nullable CommandContext args) throws CommandException{
+		if(!(src instanceof Player) || args == null){
+			throw new IllegalArgumentException();
+		}
+		if(!skriptCommandHelp.test(src, args))
+			return true;
+		return CommandResult.success();
+	}
+	
+	/** Previous command event.
 	@Override
 	@SuppressFBWarnings("REC_CATCH_EXCEPTION")
 	public boolean onCommand(final @Nullable CommandSender sender, final @Nullable Command command, final @Nullable String label, final @Nullable String[] args) {
@@ -407,7 +420,7 @@ public class SkriptCommand implements CommandExecutor {
 			r.stop();
 		}
 		return true;
-	}
+	}*/
 	
 	private final static ArgsMessage m_invalid_script = new ArgsMessage(NODE + ".invalid script");
 	private final static ArgsMessage m_invalid_folder = new ArgsMessage(NODE + ".invalid folder");
